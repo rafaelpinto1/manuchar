@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sistema de Contagem e Inventário</title>
+    <link rel="stylesheet" href="inventario.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <img src="./assets/img/logo_manuchar.png" alt="Logo Manuchar" class="logo-image">
+    </header>
+    <main>
+        <nav>
+            <ul class="navigation-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="relatorios.html">Relatórios</a></li>
+                <li><a href="configuracoes.html">Configurações</a></li>
+            </ul>
+        </nav>
+
+        <section class="inventory-section">
+            <h1>Contagem de Inventário - <span id="current-date"></span></h1> 
+            <form id="inventory-form">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantidade</th>
+                            <th>Localização</th>
+                            <th>Código do produto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div class="contagem-select">
+                            <label for="contagem-tipo">Selecione a contagem:</label>
+                            <select id="contagem-tipo" name="contagem-tipo">
+                              <option value="contagem1">Contagem 1</option>
+                              <option value="contagem2">Contagem 2</option>
+                            </select>
+                          </div>
+                        <tr>
+                            <td>Item A</td>
+                            <td><input type="number" name="quantidade-item-a"></td>
+                            <td>
+                                <select name="localizacao-item-a">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="1A">1A</option>
+                                    <option value="1B">1B</option>
+                                    <option value="2A">2A</option>
+                                    <option value="2B">2B</option>
+                                    <option value="3A">3A</option>
+                                    <option value="3B">3B</option>
+                                    <option value="4A">4A</option>
+                                    <option value="4B">4B</option>
+                                    <option value="5A">5A</option>
+                                    <option value="5B">5B</option>
+                                    <option value="6A">6A</option>
+                                    <option value="6B">6B</option>
+                                    <option value="7A">7A</option>
+                                    <option value="7B">7B</option>
+                                    <option value="8A">8A</option>
+                                    <option value="8B">8B</option>
+                                    <option value="9A">9A</option>
+                                    <option value="9B">9B</option>
+                                    <option value="10A">10A</option>
+                                    <option value="10B">10B</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="barcode-wrapper">
+                                    <input type="text" name="codigo-barras-item-a" class="barcode-input">
+                                    <button type="button" class="scan-btn" data-target="codigo-barras-item-a">📷</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Item B</td>
+                            <td><input type="number" name="quantidade-item-b"></td>
+                            <td>
+                                <select name="localizacao-item-b">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="1A">1A</option>
+                                    <option value="1B">1B</option>
+                                    <option value="2A">2A</option>
+                                    <option value="2B">2B</option>
+                                    <option value="3A">3A</option>
+                                    <option value="3B">3B</option>
+                                    <option value="4A">4A</option>
+                                    <option value="4B">4B</option>
+                                    <option value="5A">5A</option>
+                                    <option value="5B">5B</option>
+                                    <option value="6A">6A</option>
+                                    <option value="6B">6B</option>
+                                    <option value="7A">7A</option>
+                                    <option value="7B">7B</option>
+                                    <option value="8A">8A</option>
+                                    <option value="8B">8B</option>
+                                    <option value="9A">9A</option>
+                                    <option value="9B">9B</option>
+                                    <option value="10A">10A</option>
+                                    <option value="10B">10B</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="barcode-wrapper">
+                                    <input type="text" name="codigo-barras-item-b" class="barcode-input">
+                                    <button type="button" class="scan-btn" data-target="codigo-barras-item-b">📷</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Item C</td>
+                            <td><input type="number" name="quantidade-item-c"></td>
+                            <td>
+                                <select name="localizacao-item-c">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="1A">1A</option>
+                                    <option value="1B">1B</option>
+                                    <option value="2A">2A</option>
+                                    <option value="2B">2B</option>
+                                    <option value="3A">3A</option>
+                                    <option value="3B">3B</option>
+                                    <option value="4A">4A</option>
+                                    <option value="4B">4B</option>
+                                    <option value="5A">5A</option>
+                                    <option value="5B">5B</option>
+                                    <option value="6A">6A</option>
+                                    <option value="6B">6B</option>
+                                    <option value="7A">7A</option>
+                                    <option value="7B">7B</option>
+                                    <option value="8A">8A</option>
+                                    <option value="8B">8B</option>
+                                    <option value="9A">9A</option>
+                                    <option value="9B">9B</option>
+                                    <option value="10A">10A</option>
+                                    <option value="10B">10B</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="barcode-wrapper">
+                                    <input type="text" name="codigo-barras-item-c" class="barcode-input">
+                                    <button type="button" class="scan-btn" data-target="codigo-barras-item-c">📷</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit">Salvar</button>
+            </form>
+        </section>
+
+        <div id="scanner-container" style="display:none;">
+            <div id="interactive" class="viewport"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Contagem e Inventário. Todos os direitos reservados.</p>
+    </footer>
+    <script src="inventario.js"></script>
+    <script src="excel.js"></script>
+</body>
+</html>

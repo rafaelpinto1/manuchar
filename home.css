@@ -1,0 +1,225 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #e30000;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    max-width: 100%; /* Garantir que a imagem do logo não ultrapasse a largura do cabeçalho */
+    height: auto; /* Manter a proporção da imagem */
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+main {
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.welcome-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+}
+
+.welcome-section p {
+    margin-bottom: 8px;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    background-color: #e30000;
+    padding: 10px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0;
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    background-color: #e30000;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #a93226;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.login-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .logo {
+        max-width: 80%; /* Reduzir um pouco mais a largura do logo em telas menores */
+        margin-bottom: 10px; /* Adicionar margem inferior para separação */
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .welcome-section {
+        padding: 12px;
+    }
+
+    .welcome-section h2 {
+        font-size: 1.5em;
+    }
+
+    .welcome-section p {
+        font-size: 0.9em;
+    }
+
+    nav ul {
+        padding: 8px;
+    }
+
+    nav ul li a {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}
+
+.login-image {
+    width: 150px;
+    height: auto; 
+    margin-bottom: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para o gráfico de barras */
+.bar-chart {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f1f1f1; /* Cor de fundo para o gráfico */
+    border-radius: 8px;
+    overflow: hidden; /* Garante que as barras não ultrapassem o contêiner */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Utiliza flexbox para alinhar barras e legendas */
+}
+
+.bar {
+    position: relative;
+    width: 20px;
+    margin-right: 10px;
+    background-color: #3498db; /* Cor padrão da barra */
+    text-align: center;
+    transition: height 0.3s ease; /* Animação suave na mudança de altura */
+    
+}
+
+.bar:nth-child(2) {
+    background-color: #e74c3c; /* Cor da segunda barra */
+}
+
+.bar:nth-child(3) {
+    background-color: #2ecc71; /* Cor da terceira barra */
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    right: 0;
+    color: #333;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinha a legenda no final do contêiner */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 50%; /* Cria um círculo para representar a cor */
+}
+
+.legend-text {
+    font-size: 0.8em;
+}
