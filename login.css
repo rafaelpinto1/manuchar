@@ -7,6 +7,7 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .login-container {
     background-color: #fff;
     padding: 40px;
@@ -15,11 +16,13 @@ body {
     width: 320px;
     text-align: center;
 }
+
 .login-container h2 {
     margin-bottom: 30px;
     font-weight: normal;
     color: #333;
 }
+
 .login-container label {
     display: block;
     text-align: left;
@@ -27,8 +30,10 @@ body {
     margin-bottom: 5px;
     color: #333;
 }
+
 .login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="password"],
+.login-container input[type="email"] { /* Adicionei input[type="email"] aqui */
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -37,12 +42,15 @@ body {
     font-size: 14px;
     box-sizing: border-box;
 }
+
 .login-container input[type="text"]:focus,
-.login-container input[type="password"]:focus {
+.login-container input[type="password"]:focus,
+.login-container input[type="email"]:focus { /* Adicionei input[type="email"]:focus aqui */
     border-color: #0071e3;
     outline: none;
     box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
 }
+
 .login-container button {
     width: 100%;
     padding: 10px;
@@ -53,9 +61,11 @@ body {
     font-size: 14px;
     cursor: pointer;
 }
+
 .login-container button:hover {
     background-color: #c13434;
 }
+
 .login-container .register-link {
     display: block;
     margin-top: 20px;
@@ -63,15 +73,18 @@ body {
     color: #000000;
     text-decoration: none;
 }
+
 .login-container .register-link:hover {
     text-decoration: underline;
     color: #e30000;
 }
+
 .login-image {
     width: 150px;
-    height: auto; 
+    height: auto;
     margin-bottom: 20px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+    

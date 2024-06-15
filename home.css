@@ -6,12 +6,16 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+    font-family: 'neue-haas-unica', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.55556rem;
+    overflow-y: auto;
+    -webkit-font-smoothing: antialiased;
     margin: 0;
     padding: 0;
+    background: rgb(239, 239, 239);
+    color: rgb(78, 78, 78);
 }
 
 header {
@@ -30,8 +34,8 @@ header {
 }
 
 .logo {
-    max-width: 100%; /* Garantir que a imagem do logo não ultrapasse a largura do cabeçalho */
-    height: auto; /* Manter a proporção da imagem */
+    max-width: 100%;
+    height: auto;
     margin-right: 10px;
 }
 
@@ -46,7 +50,7 @@ main {
     margin: 0 auto;
 }
 
-.welcome-section {
+.dashboard-section {
     background: white;
     padding: 15px;
     margin-bottom: 15px;
@@ -54,20 +58,75 @@ main {
     border-radius: 8px;
 }
 
-.welcome-section h2 {
+.dashboard-section h1 {
     font-size: 1.8em;
     margin-bottom: 8px;
 }
 
-.welcome-section p {
-    margin-bottom: 8px;
+.bar-chart {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-nav {
-    margin-top: 15px;
+.bar {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    height: 150px; /* Altura inicial das barras */
+    background-color: #007bff; /* Cor padrão da barra */
+    transition: height 0.3s ease; /* Transição suave na mudança de altura */
 }
 
-nav ul {
+.bar:nth-child(2) {
+    background-color: #e74c3c; /* Cor da segunda barra */
+}
+
+.bar:nth-child(3) {
+    background-color: #2ecc71; /* Cor da terceira barra */
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    right: 0;
+    color: #333;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.legend-text {
+    font-size: 0.9em;
+}
+
+.navigation-menu {
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -77,13 +136,13 @@ nav ul {
     flex-wrap: wrap;
 }
 
-nav ul li {
+.navigation-menu li {
     margin: 0;
     flex: 1 0 auto;
     text-align: center;
 }
 
-nav ul li a {
+.navigation-menu li a {
     text-decoration: none;
     color: white;
     padding: 8px 12px;
@@ -93,7 +152,7 @@ nav ul li a {
     display: block;
 }
 
-nav ul li a:hover {
+.navigation-menu li a:hover {
     background-color: #a93226;
 }
 
@@ -121,24 +180,33 @@ footer p {
 
 @media screen and (max-width: 600px) {
     .logo {
-        max-width: 80%; /* Reduzir um pouco mais a largura do logo em telas menores */
-        margin-bottom: 10px; /* Adicionar margem inferior para separação */
+        max-width: 80%;
+        margin-bottom: 10px;
     }
 
     header h1 {
         font-size: 1.5em;
     }
 
-    .welcome-section {
+    .dashboard-section {
         padding: 12px;
     }
 
-    .welcome-section h2 {
+    .dashboard-section h1 {
         font-size: 1.5em;
     }
 
-    .welcome-section p {
-        font-size: 0.9em;
+    .bar-chart {
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .bar-label {
+        font-size: 0.7em;
+    }
+
+    .legend-text {
+        font-size: 0.7em;
     }
 
     nav ul {
@@ -149,77 +217,93 @@ footer p {
         padding: 6px 10px;
         font-size: 0.9em;
     }
+
+    /* Estilos para o modal responsivo */
+    .modal {
+        display: none; /* Inicia oculto */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content h2 {
+        margin-bottom: 20px;
+    }
+
+    .modal-content button {
+        background-color: #ff0000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px; /* Ajuste de margem entre os botões */
+        transition: background-color 0.3s ease;
+        width: calc(50% - 20px); /* Calcula o width para ocupar metade do espaço com margem entre botões */
+    }
+
+    .modal-content button:hover {
+        background-color: #2980b9;
+    }
 }
 
-.login-image {
-    width: 150px;
-    height: auto; 
-    margin-bottom: 2px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Estilos para o gráfico de barras */
-.bar-chart {
-    width: 80%;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #f1f1f1; /* Cor de fundo para o gráfico */
-    border-radius: 8px;
-    overflow: hidden; /* Garante que as barras não ultrapassem o contêiner */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex; /* Utiliza flexbox para alinhar barras e legendas */
-}
-
-.bar {
-    position: relative;
-    width: 20px;
-    margin-right: 10px;
-    background-color: #3498db; /* Cor padrão da barra */
-    text-align: center;
-    transition: height 0.3s ease; /* Animação suave na mudança de altura */
-    
-}
-
-.bar:nth-child(2) {
-    background-color: #e74c3c; /* Cor da segunda barra */
-}
-
-.bar:nth-child(3) {
-    background-color: #2ecc71; /* Cor da terceira barra */
-}
-
-.bar-label {
-    position: absolute;
-    bottom: -18px;
+/* Estilos para o modal */
+.modal {
+    display: none; /* Inicia oculto */
+    position: fixed;
+    z-index: 1;
     left: 0;
-    right: 0;
-    color: #333;
-    font-size: 0.8em;
-    font-weight: bold;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.chart-legend {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Alinha a legenda no final do contêiner */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+.modal-content h2 {
+    margin-bottom: 20px;
 }
 
-.legend-color {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    border-radius: 50%; /* Cria um círculo para representar a cor */
+.modal-content button {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
 }
 
-.legend-text {
-    font-size: 0.8em;
+.modal-content button:hover {
+    background-color: #ff7070;
 }

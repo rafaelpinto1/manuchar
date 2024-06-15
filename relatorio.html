@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Contagens</title>
+    <link rel="stylesheet" href="relatorio.css">
+</head>
+<body>
+    <header>
+        <img src="./assets/img/logo_manuchar.png" alt="Logo Manuchar" class="logo-image">
+        <h1>Relatório de Contagens</h1>
+    </header>
+
+    <main>
+        <section id="inventory1">
+            <h2>Contagem 1</h2>
+            <div class="inventory-table-container">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantidade</th>
+                            <th>Tipo de Unidade</th>
+                            <th>Localização</th>
+                            <th>Código do Produto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory1-data">
+                        <!-- Os dados serão preenchidos dinamicamente com JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="inventory2">
+            <h2>Contagem 2</h2>
+            <div class="inventory-table-container">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantidade</th>
+                            <th>Tipo de Unidade</th>
+                            <th>Localização</th>
+                            <th>Código do Produto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory2-data">
+                        <!-- Os dados serão preenchidos dinamicamente com JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <h2>Comparação</h2>
+            <div id="comparison-result">
+                <!-- Resultado da comparação será exibido aqui -->
+            </div>
+        </section>
+
+        <button id="generate-report-btn" class="excel-button">Gerar Relatório</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Inventário. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="relatorio.js"></script>
+</body>
+</html>

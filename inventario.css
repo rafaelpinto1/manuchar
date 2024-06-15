@@ -4,24 +4,6 @@
     box-sizing: border-box;
 }
 
-#scanner-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-#interactive.viewport {
-    width: 80%;
-    height: 80%;
-}
-
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -45,9 +27,9 @@ header h1 {
 }
 
 main {
-    padding: 10px;
+    padding: 20px;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 20px auto 0;
 }
 
 .logo-image {
@@ -106,7 +88,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #a93226;
+    background-color: #f7685b;
 }
 
 footer {
@@ -168,7 +150,7 @@ footer p {
 }
 
 .scan-btn:hover {
-    background-color: #a93226;
+    background-color: #f7685b;
 }
 
 @media screen and (max-width: 600px) {
@@ -190,12 +172,12 @@ footer p {
 
     nav ul {
         padding: 8px;
-        justify-content: center; /* Centraliza os itens em telas menores */
+        justify-content: center;
     }
 
     nav ul li {
-        flex: 1 0 50%; /* Dois itens por linha em telas menores */
-        margin: 5px; /* Adiciona margem entre os itens */
+        flex: 1 0 50%;
+        margin: 5px;
     }
 
     nav ul li a {
@@ -204,21 +186,24 @@ footer p {
     }
 
     .inventory-table thead {
-        display: none; /* Esconde os cabeçalhos da tabela em telas menores */
+        display: none;
     }
 
-    .inventory-table, .inventory-table tbody, .inventory-table tr, .inventory-table td {
+    .inventory-table,
+    .inventory-table tbody,
+    .inventory-table tr,
+    .inventory-table td {
         display: block;
         width: 100%;
     }
 
     .inventory-table tr {
         margin-bottom: 15px;
-        border: 1px solid #ddd; /* Adiciona uma borda entre as linhas */
+        border: 1px solid #ddd;
     }
 
     .inventory-table td {
-        text-align: left; /* Alinha o texto à esquerda para melhor legibilidade */
+        text-align: left;
         padding: 10px;
         position: relative;
     }
@@ -232,7 +217,134 @@ footer p {
         font-weight: bold;
     }
 
-    .inventory-table td input, .inventory-table td select {
+    .inventory-table td input,
+    .inventory-table td select {
         width: 100%;
     }
+}
+
+.excel-button {
+    background-color: #e30000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.excel-button:hover {
+    background-color: #4CAF50;
+}
+
+.excel-button:active {
+    background-color: #0056b3;
+}
+
+.excel-button::after {
+    content: " 📊";
+}
+
+.save-button {
+    background-color:  #e30000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.save-button:hover {
+    background-color: #4CAF50;
+}
+
+.save-button:active {
+    background-color: #0056b3;
+}
+
+.save-button::after {
+    content: " 💾";
+}
+
+/* Estilos para o scanner de código de barras */
+
+#scanner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#interactive {
+    position: relative;
+    width: 80%;
+    max-width: 640px;
+    height: auto;
+    max-height: 480px;
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+}
+
+#interactive #line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    z-index: 1001;
+    transform: translateY(-50%);
+}
+
+.barcode-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.barcode-input {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.scan-btn {
+    background-color: #e30000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.scan-btn:hover {
+    background-color: #f7685b;
+}
+
+#message-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #3efe6e;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
 }

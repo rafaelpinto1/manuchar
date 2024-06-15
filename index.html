@@ -11,13 +11,41 @@
         <img src="./assets/img/logo_manuchar.png" alt="Login" class="login-image">
         <form id="login-form">
             <label for="username">Usuário</label>
-            <input type="text" id="username" name="username" required>
+            <input type="email" id="username" name="username" placeholder="nome@manuchar.com.br" required>
             <label for="password">Senha</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="********" required>
             <button type="submit">Entrar</button>
         </form>
-        <a href="#" class="register-link">Não tem uma conta? Registre-se</a>
-        <a href="home.html" class="register-link">Modo de Testes (Não necessita Login)</a>
+        <a href="cadastro.html" class="register-link">Não tem uma conta? Registre-se</a>
+        <p id="message" class="message"></p>
     </div>
+
+    <script>
+        const loginForm = document.querySelector('#login-form');
+        const message = document.querySelector('#message');
+
+        // Evento de submissão do formulário de login
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = loginForm['username'].value;
+            const password = loginForm['password'].value;
+
+            // Verificar os dados salvos no localStorage
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedPassword = localStorage.getItem('userPassword');
+
+            if (username === storedEmail && password === storedPassword) {
+                message.textContent = 'Login bem-sucedido! Redirecionando...';
+                setTimeout(() => {
+                    window.location.href = 'home.html'; // Redireciona para a página após o login
+                }, 1000); // Aguarda 1 segundo antes de redirecionar
+            } else {
+                message.textContent = 'Email ou senha incorretos. Tente novamente.';
+            }
+
+            loginForm.reset(); // Limpa o formulário após tentativa de login
+        });
+    </script>
 </body>
 </html>

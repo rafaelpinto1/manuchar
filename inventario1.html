@@ -8,44 +8,49 @@
     <link rel="stylesheet" href="inventario.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-
 </head>
 <body>
     <header>
         <img src="./assets/img/logo_manuchar.png" alt="Logo Manuchar" class="logo-image">
     </header>
-    <main>
-        <nav>
-            <ul class="navigation-menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="relatorios.html">Relatórios</a></li>
-                <li><a href="configuracoes.html">Configurações</a></li>
-            </ul>
-        </nav>
+    
+    <nav>
+        <ul class="navigation-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="relatorio.html">Relatórios</a></li>
+            <li><a href="configuracoes.html">Configurações</a></li>
+        </ul>
+    </nav>
 
+    <main>
         <section class="inventory-section">
-            <h1>Contagem de Inventário - <span id="current-date"></span></h1> 
+            <h1>Primeira Contagem de Inventário - <span id="current-date"></span></h1> 
             <form id="inventory-form">
                 <table class="inventory-table">
                     <thead>
                         <tr>
                             <th>Item</th>
                             <th>Quantidade</th>
+                            <th>Tipo de Unidade</th>
                             <th>Localização</th>
-                            <th>Código do produto</th>
+                            <th>Código do Produto</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <div class="contagem-select">
-                            <label for="contagem-tipo">Selecione a contagem:</label>
-                            <select id="contagem-tipo" name="contagem-tipo">
-                              <option value="contagem1">Contagem 1</option>
-                              <option value="contagem2">Contagem 2</option>
-                            </select>
-                          </div>
                         <tr>
                             <td>Item A</td>
                             <td><input type="number" name="quantidade-item-a"></td>
+                            <td>
+                                <select name="tipo-unidade-item-a">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="un">Unidade (Un)</option>
+                                    <option value="kg">Quilograma (Kg)</option>
+                                    <option value="cx">Caixa (Cx)</option>
+                                    <option value="pc">Peça (Pç)</option>
+                                    <option value="pl">Palete (Pl)</option>
+                                    <option value="t">Tonelada (t)</option>
+                                </select>
+                            </td>
                             <td>
                                 <select name="localizacao-item-a">
                                     <option value="" disabled selected>Selecione</option>
@@ -82,6 +87,17 @@
                             <td>Item B</td>
                             <td><input type="number" name="quantidade-item-b"></td>
                             <td>
+                                <select name="tipo-unidade-item-b">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="un">Unidade (Un)</option>
+                                    <option value="kg">Quilograma (Kg)</option>
+                                    <option value="cx">Caixa (Cx)</option>
+                                    <option value="pc">Peça (Pç)</option>
+                                    <option value="pl">Palete (Pl)</option>
+                                    <option value="t">Tonelada (t)</option>
+                                </select>
+                            </td>
+                            <td>
                                 <select name="localizacao-item-b">
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="1A">1A</option>
@@ -117,6 +133,17 @@
                             <td>Item C</td>
                             <td><input type="number" name="quantidade-item-c"></td>
                             <td>
+                                <select name="tipo-unidade-item-c">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="un">Unidade (Un)</option>
+                                    <option value="kg">Quilograma (Kg)</option>
+                                    <option value="cx">Caixa (Cx)</option>
+                                    <option value="pc">Peça (Pç)</option>
+                                    <option value="pl">Palete (Pl)</option>
+                                    <option value="t">Tonelada (t)</option>
+                                </select>
+                            </td>
+                            <td>
                                 <select name="localizacao-item-c">
                                     <option value="" disabled selected>Selecione</option>
                                     <option value="1A">1A</option>
@@ -150,19 +177,22 @@
                         </tr>
                     </tbody>
                 </table>
-                <button type="submit">Salvar</button>
+                <button type="submit" id="save-button" class="save-button">Salvar Inventário</button>
+                <button type="button" id="export-button" class="excel-button">Exportar como Planilha Excel</button>
+           
             </form>
         </section>
 
         <div id="scanner-container" style="display:none;">
             <div id="interactive" class="viewport"></div>
+            <div id="line"></div>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2024 Sistema de Contagem e Inventário. Todos os direitos reservados.</p>
     </footer>
-    <script src="inventario.js"></script>
-    <script src="excel.js"></script>
+    <div id="message-container"></div>
+    <script src="inventario1.js"></script>
 </body>
 </html>

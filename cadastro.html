@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="register-container">
+        <h3>Preencha para realizar seu Cadastro</h3>
+        <div class="loading" id="loading">
+            <img src="./assets/img/logo_manuchar.png" alt="Logo Manuchar" class="register-image">
+        </div>
+        <form id="signupForm">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="nome@manuchar.com.br" required><br>
+
+            <label for="password">Senha:</label><br>
+            <input type="password" id="password" name="password" placeholder="********" required><br>
+
+            <label for="confirmPassword">Confirme a Senha:</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="********" required><br>
+
+            <div class="password-strength">
+                <progress id="passwordStrength" max="5" value="0"></progress>
+                <span id="passwordStrengthText"></span>
+            </div>
+
+            <button type="submit" class="btn-save">Salvar</button>
+            <button type="button" class="btn-back">Voltar</button>
+        </form>
+
+        <p id="message" class="message"></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        const signupForm = document.querySelector('#signupForm');
+        const message = document.querySelector('#message');
+        const loading = document.querySelector('#loading');
+        const passwordInput = document.querySelector('#password');
+        const confirmPasswordInput = document.querySelector('#confirmPassword');
+        const passwordStrength = document.querySelector('#passwordStrength');
+        const passwordStrengthText = document.querySelector('#passwordStrengthText');
+
+        function validatePassword() {
+            const password = passwordInput.value;
+
+            // Verificações dos critérios
+            const isLengthValid = password.length >= 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasDigit = /\d/.test(password);
+            const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            // Calcula a força da senha
+            let strength = 0;
+            if (isLengthValid) strength++;
+            if (hasUpperCase) strength++;
+            if (hasLowerCase) strength++;
+            if (hasDigit) strength++;
+            if (hasSymbol) strength++;
+
+            // Atualiza a barra de progresso de força da senha e a cor
+            passwordStrength.value = strength;
+            updateStrengthColor(strength);
+
+            // Atualiza o texto de força da senha
+            updateStrengthText(strength, isLengthValid, hasUpperCase, hasLowerCase, hasDigit, hasSymbol);
+        }
+
+        function updateStrengthColor(strength) {
+            // Remove todas as classes de cor da barra de progresso
+            passwordStrength.classList.remove('password-very-weak', 'password-weak', 'password-moderate', 'password-strong', 'password-very-strong');
+
+            // Adiciona a classe de cor apropriada baseada na força da senha
+            if (strength === 0) {
+                passwordStrength.classList.add('password-very-weak');
+            } else if (strength === 1) {
+                passwordStrength.classList.add('password-weak');
+            } else if (strength === 2) {
+                passwordStrength.classList.add('password-moderate');
+            } else if (strength === 3) {
+                passwordStrength.classList.add('password-strong');
+            } else if (strength === 4 || strength === 5) {
+                passwordStrength.classList.add('password-very-strong');
+            }
+        }
+
+        function updateStrengthText(strength, isLengthValid, hasUpperCase, hasLowerCase, hasDigit, hasSymbol) {
+            let strengthText = '';
+
+            if (!isLengthValid) {
+                strengthText += 'Pelo menos 8 caracteres, sendo: ';
+            }
+            if (!hasUpperCase) {
+                strengthText += '1 letra maiúscula. ';
+            }
+            if (!hasLowerCase) {
+                strengthText += '1 letra minúscula. ';
+            }
+            if (!hasDigit) {
+                strengthText += '1 número. ';
+            }
+            if (!hasSymbol) {
+                strengthText += '1 caractere especial.';
+            }
+
+            passwordStrengthText.textContent = strengthText;
+        }
+
+        passwordInput.addEventListener('input', function() {
+            validatePassword();
+        });
+
+        confirmPasswordInput.addEventListener('input', function() {
+            validatePassword();
+        });
+
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = signupForm['email'].value;
+            const password = signupForm['password'].value;
+            const confirmPassword = signupForm['confirmPassword'].value;
+
+            if (password !== confirmPassword) {
+                message.textContent = 'As senhas não coincidem.';
+                return;
+            }
+
+            loading.style.display = 'flex';
+
+            setTimeout(function() {
+                // Salva os dados no localStorage
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userPassword', password);
+
+                loading.style.display = 'none';
+                message.textContent = 'Cadastro realizado com sucesso! Redirecionando...';
+
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1000);
+
+                signupForm.reset();
+                passwordStrength.value = 0;
+                passwordStrength.classList.remove('password-very-weak', 'password-weak', 'password-moderate', 'password-strong', 'password-very-strong');
+                passwordStrengthText.textContent = '';
+            }, 2000);
+        });
+
+        // Botão Voltar
+        const btnBack = document.querySelector('.btn-back');
+        btnBack.addEventListener('click', function() {
+            window.location.href = 'index.html'; // Redireciona para a página inicial
+        });
+    </script>
+</body>
+</html>
